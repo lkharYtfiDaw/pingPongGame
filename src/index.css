@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer components
+{
+    .header-icon
+    {
+        @apply w-6 h-6 cursor-pointer
+    }
+    .nav-icon
+    {
+        @apply w-6 h-6
+    }
+    .invest-icon
+    {
+        @apply w-6 h-6 stroke-gray-600
+    }
+    .widget-icon
+    {
+        @apply w-8 h-8 stroke-1
+    }
+}
