@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 import React from 'react'
 
 import { useRecoilState } from 'recoil'
@@ -25,9 +23,9 @@ function NavItem({link} : NavItemPorp) {
       {
         setActiveNavItem(link.id)
       }} key={link.id} className={`w-full flex items-center justify-start space-x-8 px-5 cursor-pointer
-                  group hover:border-gray-900 border-l-4 border-transparent ${activeNacItem === link.id && "border-gray-900"}  `}>
+                  group hover:text-[#DA00FE]  border-transparent ${activeNacItem === link.id && "text-[#DA00FE]"}  `}>
         <span> {link.icon} </span>
-         <h1 className={` group-hover:text-  xl:flex hidden ${activeNacItem === link.id &&  "shadow-lg shadow-indigo-500"}`}>{link.title} </h1>
+         <h1 className={` group-hover:text-gradient-1 font-extrabold text-2xl xl:flex hidden ${activeNacItem === link.id &&  "text-gradient-1"}`}>{link.title} </h1>
       </div>
     )
 }

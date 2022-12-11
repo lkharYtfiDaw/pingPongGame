@@ -1,14 +1,19 @@
 import React from 'react'
 import { MagnifyingGlassIcon, CpuChipIcon, UserCircleIcon, BeakerIcon, BellIcon } from '@heroicons/react/24/outline';
+import logo from "../../../assets/PingPong.png"
+
 
 function Header() {
   return (
-    <div className='bg-[#242424] w-full py-6 items-center justify-between flex px-12  '>
+    <div className='bg-[#242424] w-full py-2  max-h-24 items-center justify-between flex px-12  '>
        
       {/*Logo*/}
       <div className='w-full flex  space-x-4 items-center lg:justify-start py-2'> 
-        <CpuChipIcon className='w-6 h-6'></CpuChipIcon>
-        <h1 className='text-xl text-gray-900 font-medium'  >PongGame</h1>
+        <div className='sm:w-14 sm:h-14  w-6 h-6 flex items-center'>
+            <img src={logo} alt="" />
+        </div>
+        {/* <CpuChipIcon className='w-6 h-6'></CpuChipIcon> */}
+        <h1 className='sm:text-2xl  font-bold text-gradient-1'  >PongGame</h1>
       </div>
       {/*Icons*/}
       <div className='w-full flex  space-x-4 items-center justify-end py-2'>
