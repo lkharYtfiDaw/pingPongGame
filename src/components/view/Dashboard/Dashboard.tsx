@@ -1,6 +1,7 @@
 import React from 'react'
 import coq from "../../../assets/coq.png"
 import table from "../../../assets/table.png"
+import Tabs from './Tabs'
 
 function Dashboard() {
   return (
@@ -17,11 +18,9 @@ function Dashboard() {
           </div>
         </div>
       </section>
-      <section className='flex w-full flex-col px-8 sm:px-14   space-y-16'>
+      <section className='flex w-full flex-col px-8 sm:px-14   space-y-4'>
         <h1 className=' text-xl lg:text-3xl font-extrabold '>Games</h1>
-        <div>
-          
-        </div>
+        <Tabs/>
 
       </section>
     </main>

@@ -15,9 +15,7 @@ type NavItemPorp =
   }
 
 function NavItem({link} : NavItemPorp) {
-    const [activeNacItem, setActiveNavItem] = useRecoilState(ActiveTabState)
-    console.log(activeNacItem);
-    
+    const [activeNacItem, setActiveNavItem] = useRecoilState(ActiveTabState)    
     return (
       <div onClick={()=>
       {

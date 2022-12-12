@@ -30,6 +30,10 @@
     {
         @apply text-transparent  bg-clip-text bg-gradient-to-l from-[#670196] to-[#DA00FE]
     }
+    .bg-tab-gradient
+    {
+        @apply bg-gradient-to-r from-[#670196] to-[#DA00FE]
+    }
 }
 
 
