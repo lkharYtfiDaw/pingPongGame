@@ -5,7 +5,7 @@ import Tabs from './Tabs'
 
 function Dashboard() {
   return (
-    <main className='col-span-10 h-[calc(100vh-88px)] sm:px-12  px-8 w-full scrollbar-hide flex flex-col items-start justify-start space-y-12 pt-10'>
+    <main className='col-span-10  h-[100%] xl:h-[calc(100vh-88px)] sm:px-12  px-8 w-full  flex flex-col items-start justify-start space-y-12 pt-10'>
       <section className='flex w-full flex-col px-8 sm:px-14   space-y-16'>
         <h1 className=' text-xl lg:text-3xl font-extrabold text-gradient'>Good Morning, <p>Mohamed El Hadjaoui</p>  </h1>
         <div className='rounded-lg  px-8 sm:px-12 lg:ml-8 flex items-center justify-around h-72 bg-gradient-to-b from-[#670196] to-[#DA00FE] ' >
@@ -14,7 +14,7 @@ function Dashboard() {
             <span className='font-light text-3xl lg:text-4xl text-center xl:text-end '>Game</span>
           </div>
           <div className='relative lg:w-96 w-56 h-full md:flex hidden items-center justify-center'>
-          <img className=' absolute ' src={table} alt="coq" />
+          <img className=' absolute ' src={table} alt="pong table" />
           </div>
         </div>
       </section>

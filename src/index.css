@@ -34,6 +34,10 @@
     {
         @apply bg-gradient-to-r from-[#670196] to-[#DA00FE]
     }
+    .bg-login-gradient
+    {
+        @apply bg-gradient-to-tr from-[#670196] to-[#DA00FE]
+    }
 }
 
 

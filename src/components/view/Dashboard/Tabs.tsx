@@ -20,9 +20,9 @@ export default function Tabs() {
                     activeTab  === 0 ? TabPlayContentData.map((items) => (
                         <TabsPlayContent params={items} />
                     )) :
-                    TabLiveContentData.map((items) => (
+                    TabLiveContentData.length ? TabLiveContentData.map((items) => (
                         <TabsLiveContent params={items} />
-                    ))
+                    )) : <h1 className="font-bold"> no live games for the moment</h1>
                 }
             </div>
         </div>

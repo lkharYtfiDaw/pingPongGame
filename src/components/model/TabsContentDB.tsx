@@ -7,29 +7,29 @@ import liftingrok from "../../assets/liftingrok.png"
 export const TabPlayContentData = [
     {
       id: 0,
-      title: "Piece of Cake",
+      title: "Easy",
       img: pieceofcake
     },
     {
       id: 1,
-      title: "Not Bad",
+      title: "Meduim",
       img: notbad
     },
     {
         id: 3,
-        title: "Tough Row to Hoe",
+        title: "Hard",
         img: liftingrok
     },
 
   ];
 
   export const TabLiveContentData = [
-    {
-      id: 0,
-      title: "Play",
-    },
-    {
-      id: 1,
-      title: "Live",
-    },
+    // {
+    //   id: 0,
+    //   title: "Play",
+    // },
+    // {
+    //   id: 1,
+    //   title: "Live",
+    // },
   ];
