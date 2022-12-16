@@ -2,7 +2,7 @@ import React from 'react'
 import avtar from '../../../assets/avatar.jpeg'
 function ProfileCard() {
   return (
-    <div className='bg-login-gradient rounded-md  flex flex-col items-center m-8 p-8'>
+    <div className='bg-login-gradient rounded-md w-full  flex flex-col items-center  p-8'>
       <div>
         <img src={avtar} alt="avatar"  className='h-16 rounded-full'/>
       </div>
