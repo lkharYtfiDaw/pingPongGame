@@ -1,6 +1,8 @@
 import React from 'react'
 import { MagnifyingGlassIcon, CpuChipIcon, UserCircleIcon, BeakerIcon, BellIcon } from '@heroicons/react/24/outline';
 import logo from "../../../assets/PingPong.png"
+import avtar from '../../../assets/avatar.jpeg'
+
 
 
 function Header() {
@@ -20,7 +22,10 @@ function Header() {
 
         {/* header-icon is a custom class*/}
         <BellIcon  className='header-icon'></BellIcon> 
-        <UserCircleIcon  className='header-icon'></UserCircleIcon>
+        <div className=' cursor-pointer'>
+        <img src={avtar} alt="avatar"  className='h-9 rounded-full '/>
+      </div>
+        {/* <UserCircleIcon  className='header-icon'></UserCircleIcon> */}
       </div>
     </div>
   )
