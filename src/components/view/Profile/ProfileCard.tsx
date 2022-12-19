@@ -1,24 +1,18 @@
 import React from 'react'
-import avtar from '../../../assets/avatar.jpeg'
-function ProfileCard() {
+import Acheivements from './Acheivements'
+import ProfileImage from './ProfileImage'
+export function ProfileCard() {
   return (
-    <div className='bg-login-gradient rounded-md w-full  flex flex-col items-center  p-8'>
-      <div>
-        <img src={avtar} alt="avatar"  className='h-16 rounded-full'/>
-      </div>
+    <div className='col-span-2 bg-[#242424] ring-2 ring-gray-600 ring-offset-1 rounded-md w-full  flex flex-col items-center justify-evenly  px-4 pt-12 pb-6'>
+     <ProfileImage/>
       <div id='title' className='font-semibold text-center text-xl m-4'>Mohamed El Hadjaoui</div>
       <div id='subtitle' className='text-sm text-gray-200'>Web3 Developer</div>
-      <div id='stats' className='flex justify-between items-center'>
 
-        <div className='flex flex-col items-center'>
-              <div> 172</div>
-              <div> Posts</div>
-        </div>
-      </div>
       <div id='title'>Actions</div>
+
+      <Acheivements/>
 
     </div>
   )
 }
 
-export default ProfileCard

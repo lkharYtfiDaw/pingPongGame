@@ -17,10 +17,11 @@ type AcheivementCardProps =
 }
 
 export function StatsCard({title, count, color} :StatsCardProps) {
+  const shadow = "shadow-["+color+"]";
   return (
-    <div className={`flex items-center justify-around  flex-col sm:flex-row h-40 xl:w-72 min-w-[130px] ${color} rounded-xl mt-8  p-4`}>
-            <h1 className='font-extrabold text-5xl'>{count}</h1>
-            <h1 className='font-bold text-xl'>{title}</h1>
+    <div className={`flex items-center justify-around  flex-col sm:flex-row h-40 w-full ring-1 ring-white ${color} rounded-xl mt-8  p-4`}>
+            <h1 className='font-extrabold text-xl sm:text-5xl'>{count}</h1>
+            <h1 className='font-bold sm:text-xl'>{title}</h1>
     </div>
   )
 }
@@ -29,8 +30,8 @@ export function AcheivementCard({title, cost, color, avatar, wingames = 0} :Ache
   console.log(wingames);
   
   return (
-    <div className={`flex items-center justify-around flex-col sm:flex-row  ${  cost > wingames && "grayscale"} ${color} h-40 xl:w-72 min-w-[130px] rounded-xl mt-8 p-4`}>
-            <img className='sm:h-32  h-10' src={avatar} alt="acheivement avatar" />
+    <div className={`flex items-center justify-around flex-col sm:flex-row xl:flex-col ${  cost > wingames && "grayscale"} ${color} h-40 w-full rounded-xl mt-8 p-4 ring-1 ring-white `}>
+            <img className='sm:h-32  h-16' src={avatar} alt="acheivement avatar" />
             <h1 className='font-bold sm:text-xl'>{title}</h1>
     </div>
   )

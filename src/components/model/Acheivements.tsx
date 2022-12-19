@@ -8,7 +8,7 @@ export const AcheivementsLinks = [
         id: 0,
         title: "Bronze",
         cost: 2,
-        color: "bg-login-gradient",
+        color: "bg-[#10559A]",
         avatar: bronze,
         wingames: 4
     },
@@ -16,7 +16,7 @@ export const AcheivementsLinks = [
         id: 1,
         title: "Silver",
         cost: 4,
-        color: "bg-login-gradient",
+        color: "bg-[#488786]",
         avatar: silver,
         wingames: 4
     },
@@ -24,7 +24,7 @@ export const AcheivementsLinks = [
         id: 2,
         title: "Gold",
         cost: 6,
-        color: "bg-login-gradient",
+        color: "bg-[#DB4C77]",
         avatar: gold,
         wingames: 8
     },
