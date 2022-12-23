@@ -11,3 +11,15 @@
     },
 
   ];
+
+  export const TabMessagesLinks = [
+    {
+      id: 0,
+      title: "Chat",
+    },
+    {
+      id: 1,
+      title: "Channels",
+    },
+
+  ];
