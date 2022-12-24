@@ -22,8 +22,8 @@
    },
    {
      id: 3,
-     to: "/friends",
-     title: "Friends",
+     to: "/users",
+     title: "Users",
      icon: <UserGroupIcon className="nav-icon" />,
    },
    {
