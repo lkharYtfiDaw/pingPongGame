@@ -20,7 +20,7 @@ function App() {
         <Route path='/' element={<Dashboard/>}/>
         <Route path='/users' element={<Users/>}/>
         <Route path='/profile' element={<Profile/>}/>
-        <Route path='/messages' element={<Messages/>}/>
+        <Route path='/messages' element={<Messages/>}/> 
         {/* <Route path='/login' element={<Login/>}/> */}
       </Routes>
       </div>

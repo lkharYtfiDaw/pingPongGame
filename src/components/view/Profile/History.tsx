@@ -4,6 +4,7 @@ import TableRow from './TableRow'
 
 function History() {
     return (
+     
         <div className='flex w-full flex-col '>
 
             <h1 className='w-full font-bold sm:text-xl px-10 py-12'> History</h1>

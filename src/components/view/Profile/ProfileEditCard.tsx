@@ -8,45 +8,31 @@ export function ProfileEditCard() {
         <ProfileImage />
         <div className="mb-3 w-full">
           <label htmlFor="formFile" className="form-label inline-block mb-2">Choose your Image</label>
-          <input className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0
-            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" id="formFile" />
+          <input type="file" className="file-input file-input-bordered file-input-accent w-full text-gray-700 " />
+          {/* <input className="form-control block w-full px-3 py-1.5 text-base font-normal    text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" id="formFile" /> */}
         </div>
         <div className="flex w-full justify-center">
           <div className="mb-3 w-full">
             <label htmlFor='exampleText0' className="form-label inline-block mb-2 ">Name</label>
-            <input
-              type="text"
-              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0
-                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              id="exampleText0"
-              placeholder="Mohamed El Hadjaoui"
-            />
+            <input type="text" placeholder="Mohamed El Hadjaoui" className="input input-bordered input-success w-full" />
           </div>
         </div>
         <div className="flex w-full justify-center">
           <div className="mb-3 w-full">
             <label className="form-label inline-block mb-2 ">About You</label>
-            <textarea
-              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0
-                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              id="exampleFormControlTextarea1"
-              rows={3}
-              onChange={(e) => {
-
-
-              }}
-              placeholder="Your message"
-            ></textarea>
+            <textarea className="textarea textarea-accent w-full text-gray-800" placeholder="Bio"></textarea>
           </div>
         </div>
 
-        <div className="flex items-center pl-4 rounded border border-gray-200 w-full ">
-          <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox" className="w-4 h-4 r accent-purple-600  border-purple-500
-               focus:ring-2 d"/>
-            <label htmlFor="bordered-checkbox-1" className="py-4 ml-2 w-full  font-bold overflow-auto">Enable 2 Step Verification</label>
+        <div className="form-control flex w-full justify-center ">
+          <label className="cursor-pointer label">
+            <span className="label-text text-white font-extrabold sm:text-xl">Enabale 2f verification</span>
+            <input type="checkbox" className="toggle toggle-accent"  />
+          </label>
         </div>
-        <button className="bg-login-gradient  rounded-lg px-12 py-2 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110" typeof='button'>
-          Save</button>
+        <button className="btn btn-accent transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">Save</button>
+        
       </div>
 
 

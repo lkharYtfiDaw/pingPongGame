@@ -10,7 +10,7 @@ export const AcheivementsLinks = [
         cost: 2,
         color: "bg-[#10559A]",
         avatar: bronze,
-        wingames: 4
+        wingames: 0
     },
     {
         id: 1,
@@ -18,7 +18,7 @@ export const AcheivementsLinks = [
         cost: 4,
         color: "bg-[#488786]",
         avatar: silver,
-        wingames: 4
+        wingames: 0
     },
     {
         id: 2,
@@ -26,6 +26,6 @@ export const AcheivementsLinks = [
         cost: 6,
         color: "bg-[#DB4C77]",
         avatar: gold,
-        wingames: 8
+        wingames: 0
     },
 ];
