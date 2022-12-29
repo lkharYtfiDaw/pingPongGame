@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import avtar from '../../../assets/avatar.jpeg'
 import { ChatFriends, ChatLog } from '../../model/atoms/ChatFriends'
+import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
+import BanModal from './BanModal';
+
 
 type CardPorps =
     {
@@ -56,6 +59,17 @@ function Card({ data }: CardPorps) {
                 <p className="text-sm  truncate">
                     {data.bio}
                 </p>
+            </div>
+            {/* Ban Modal*/}
+            <BanModal name={data.name} />
+            <div className="dropdown dropdown-left  ">
+                {/* <label tabIndex={0} className=""> Options</label> */}
+                <div tabIndex={0}><EllipsisVerticalIcon className='header-icon'/></div>
+                <ul tabIndex={0} className="dropdown-content  menu p-2 shadow bg-[#242424] rounded-box w-52">
+                    <li><label htmlFor="my-modal" className="btn m-1">Block</label>
+                    </li>
+                    <li><a className="btn m-1">View Profile</a></li>
+                </ul>
             </div>
             {/* <div className="inline-flex items-center text-base font-semibold">
                 <div className='w-6 bg-red-600 rounded-lg text-center font-bold'>1</div>

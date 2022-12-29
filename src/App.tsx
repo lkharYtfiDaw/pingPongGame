@@ -9,12 +9,12 @@ import Profile from './components/view/Profile/Profile'
 
 function App() {
   return (
-    <div className='text-white '>
+    <div className='text-white  '>
       {/* <Login/> */}
       <div>
 
       <Header/>
-      <div className='w-full bg-black  min-h-[90vh] grid grid-cols-12'>
+      <div className='w-full bg-black  grid grid-cols-12'>
       <Navbar />
       <Routes>
         <Route path='/' element={<Dashboard/>}/>

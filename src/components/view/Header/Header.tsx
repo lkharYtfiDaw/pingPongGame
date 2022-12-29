@@ -1,5 +1,5 @@
 import React from 'react'
-import { MagnifyingGlassIcon, CpuChipIcon, UserCircleIcon, BeakerIcon, BellIcon } from '@heroicons/react/24/outline';
+import { BellIcon } from '@heroicons/react/24/outline';
 import logo from "../../../assets/PingPong.png"
 import avtar from '../../../assets/avatar.jpeg'
 
