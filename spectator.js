@@ -88,23 +88,36 @@ window.addEventListener("resize", (event)=>{
     context.canvas.width = canvas.parentNode.offsetWidth;
     context.canvas.height = canvas.parentNode.offsetWidth * .6;
     //Draw temp canvas to our canvas
-    context.drawImage(tempContext.canvas, 0, 0);
+    context.drawImage(tempContext.canvas, 0, 0);        
     tmpCanvas.remove();
 
 })
 
 // ==================+Connection to server+====================== 
-const socket = io('http://localhost:80', {autoConnect: false, autoReconnect:false, transports: ['websocket'], query: {role:"player"}});
+const socket = io('http://localhost:80', {autoConnect: false, autoReconnect:false, transports: ['websocket'], query: {role:"spectator", roomname:"none"}});
 // socket.on("connect_error", (error) => {console.log("Connection error occured: ", error);});
 socket.on("connect", () => {console.log("Connection to server established");});
 // socket.on("disconnect", (reason) => {console.log(`Disconnection from server: ${reason}`);
 //                                         if (reason == "io server disconnect")
 //                                             socket.disconnect();
 //                                             console.log("Reconnection..");});
-socket.on("queue", renderqueue());
 socket.on("update", (cords) => {
 updateObjects(cords, bcWidth, bcHeight);
 renderElements();
+})
+socket.on("game has ended", ()=>{
+    text("Game Ended", canvas.width * .1, canvas.height* .5, "WHITE");
+})
+socket.on("ongoinggames", (games)=>
+{
+    console.log(games);
+    OngoingGames = games;
+    socket.io.opts.query = {
+        role:"spectator",
+        roomname: games[0],
+    };
+    socket.disconnect();
+    socket.connect();
 })
 socket.on("uWon", () => {renderWinLost("YOU WON")});
 socket.on("uLost", () => {renderWinLost("YOU LOST")});
@@ -112,7 +125,7 @@ socket.on("OpponentLeft", () => {renderWinLost("OPPONENT LEFT")});
 socket.connect();
 
 // =====================================================
-
+var OngoingGames;
 var queueIntervalId;
 // Updating my game objects after receiving data from server
 function updateObjects(cords, Width, Height)
@@ -142,16 +155,6 @@ function drawNet()
         rectangle(net.x, net.y + i, net.width, net.height, net.color);
 }
 
-
-/* For keyboard event */
-document.addEventListener('keydown', (event) =>
-{
-    if (event.key == "ArrowUp")
-        socket.emit("keyUp");
-    if (event.key == "ArrowDown")
-        socket.emit("keyDown");
-});
-
 // Rendering the game
 function renderElements()
 {
@@ -170,36 +173,4 @@ function renderElements()
     // Draw the ball
     circle(ball.x, ball.y, ball.radius, ball.color);
 }
-// Rendering win or lost
-function renderWinLost(result)
-{
-    setInterval(()=>{
-    rectangle(0, 0, canvas.width, canvas.height, "BLACK");
-    if (result != "OPPONENT LEFT")
-        text(result, canvas.width * .3, canvas.height* .5, "WHITE");
-    else 
-    {
-        text(result, 0, canvas.height* .4, "WHITE");
-        text("YOU WIN", canvas.width * .3, canvas.height* .7, "WHITE");
-    }
-}, 1000/60);
-}
 
-// Rendering queue
-function renderqueue()
-{
-    let seconds = 0;
-    let minutes = 0;
-
-    queueIntervalId = setInterval(()=>{
-        if (seconds == 60)
-        {
-            seconds = 0;
-            minutes++;
-        }
-        else
-            seconds++;
-        rectangle(0, 0, canvas.width, canvas.height, "BLACK");
-        text(`${minutes} : ${seconds}`, canvas.width * .4, canvas.height * .5, "WHITE");
-    }, 1000);
-}
