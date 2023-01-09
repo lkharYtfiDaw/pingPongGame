@@ -35,7 +35,7 @@ export class FirstService {
         if (found) {
           client.join(client.handshake.query.roomname);
         } 
-        else 
+        else
           client.emit("roomnotfound");
       }
     }
