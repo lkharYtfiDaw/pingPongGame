@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+
+  nickname     String  @unique
+  username     String  @unique
+  firstName    String
+  lastName     String
+  email        String  @unique
+  pictureLink  String
+  accessToken  String
+  refreshToken String
+  bio          String?
+  twoFacAuthSecret  String?
+  isTwoFacAuthEnabled Boolean @default(false)
+  isTwoFacAuthVerified Boolean @default(false)
+
+  friends Friends[]
+
+  @@unique([id, username, email])
+  @@map("users")
+}
+
+model Friends {
+  id Int @id @default(autoincrement())
+
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+  friendId Int
+
+  @@map("friends")
+}
