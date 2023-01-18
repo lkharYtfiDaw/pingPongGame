@@ -3,7 +3,7 @@ import { ConnectedSocket, MessageBody, SubscribeMessage, WebSocketGateway, WebSo
 import { Server, Socket } from 'socket.io';
 import { GameService } from './game.service';
   
-@WebSocketGateway(80, {namespace:"Default"})
+@WebSocketGateway(80)
 export class GameGateway implements OnGatewayConnection, OnGatewayDisconnect
 {
   @WebSocketServer() wss: Server;
