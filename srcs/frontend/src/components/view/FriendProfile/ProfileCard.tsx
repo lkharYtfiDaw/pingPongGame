@@ -19,7 +19,7 @@ function ProfileCard() {
 
                 <PencilSquareIcon  onClick={() => setIsMe(false)} className='header-icon hover:text-[#DA00FE] '/>
                 </div>
-                <ProfileImage />
+                <ProfileImage avatar=''/>
               
 
                 <h1 className='font-bold text-center w-full overflow-auto'>{profileData.firstName} {profileData.lastName}</h1>

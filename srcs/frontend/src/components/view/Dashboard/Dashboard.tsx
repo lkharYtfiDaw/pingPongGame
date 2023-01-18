@@ -20,7 +20,7 @@ function Dashboard() {
             <h1 className='font-extrabold text-3xl lg:text-6xl'>Ping Pong</h1>
             <span className='font-light text-3xl lg:text-4xl text-center xl:text-end '>Game</span>
           </div>
-          <div className='relative lg:w-96 w-56 h-full md:flex hidden items-center justify-center'>
+          <div className='relativNavbare lg:w-96 w-56 h-full md:flex hidden items-center justify-center'>
           <img className=' absolute ' src={table} alt="pong table" />
           </div>
         </div>

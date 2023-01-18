@@ -20,6 +20,8 @@ import { TwoFAEnabled } from './components/model/atoms/TwoFAEnabled'
 import TwoFA from './components/view/Login/TwoFA'
 import PageNotFound from './components/view/NotFound/PageNotFound'
 import FriendProfile from './components/view/FriendProfile/FriendProfile'
+import GameView  from './components/view/game/GameView'
+import GameSpectator from './components/view/game/GameSpectator'
 
 
 
@@ -69,9 +71,9 @@ function App() {
     <div className='text-white  '>
       {
       
-        status ? <Login />
-          :
-          profileData.isTwoFacAuthEnabled  &&  (profileData.isTwoFacAuthVerified === false) ? <TwoFA/> : 
+        // status ? <Login />
+        //   :
+        //   profileData.isTwoFacAuthEnabled  &&  (profileData.isTwoFacAuthVerified === false) ? <TwoFA/> : 
           <div>
             <Header />
             {/** All those Modals are being called by the user there not visible till they got called */}
@@ -82,6 +84,8 @@ function App() {
               <Navbar />
               <Routes>
                 <Route path='/' element={<Dashboard />} />
+                <Route path='/game' element={<GameView />} />
+                <Route path='/spectator' element={<GameSpectator />} />
                 <Route path='/users' element={<Users />} />
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/profile/:id' element={<FriendProfile />} />
