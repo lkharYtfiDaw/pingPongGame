@@ -15,8 +15,18 @@ export class GameService {
   handleConnection(client: Socket, players: Socket[], wss: Server, rooms: string[], ongameclients:Socket[]): void 
   {
     client.data.gameIntervalIdState = "off";
-    // Check client's token and get client Id, profile pic link and level=============================================
+    // Get token
     /*
+    */
+    // AbdeLah=============================================
+    /*
+    try{
+        need a function that takes token, and throw if not validated, otherwise return ({id:string,piclink:string})
+    }
+    catch
+    {
+
+    } 
       need to fill these :{
         client.data.user.id
         client.data.user.piclink
@@ -171,8 +181,8 @@ export class GameService {
     }
     wss.in(first.data.gameIntervalIdState).disconnectSockets(true);
     rooms.filter(room => first.data.roomname == room);
-    // Add game to users history and their state to not playing============================================
-          /*
+    // AbdeLah ============================================
+          /*    Add game to users history and their state to not playing
               user 1:{
                 id : first.data.user.id
                 opponent : second.data.user.id
@@ -215,8 +225,8 @@ export class GameService {
           wss.in(client.data.gameIntervalIdState).disconnectSockets(true);
           rooms.filter(room => client.data.roomname == room);
 
-          //Add game to clients history in database and set their states to not playing ===========================================
-          /*
+          // AbdeLah ===========================================
+          /* Add game to clients history in database and set their states to not playing
               user 1:{
                 id : client.data.user.id
                 opponent : client.data.opponent.data.user.id
