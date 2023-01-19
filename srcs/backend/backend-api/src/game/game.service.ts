@@ -14,20 +14,20 @@ export class GameService {
   constructor() {}
   handleConnection(client: Socket, players: Socket[], wss: Server, rooms: string[], ongameclients:Socket[]): void 
   {
-    client.data.gameIntervalIdState = "off";
+    client.data.inGame = false;
+    client.data.manageDisconnection = false;
     // Get token
     /*
     */
     // AbdeLah=============================================
-    /*
     try{
-        need a function that takes token, and throw if not validated, otherwise return ({id:string,piclink:string})
+       // need a function that takes token, and throw if not validated, otherwise return ({id:string,piclink:string})
     }
     catch
     {
 
     } 
-      need to fill these :{
+      /* need to fill these :{
         client.data.user.id
         client.data.user.piclink
       }
@@ -45,7 +45,7 @@ export class GameService {
   async handleSpectatorConnection(client: Socket, rooms: string[], ongameclients:Socket[])
   {
     if (client.connected) // Proceed if the client hasn't disconnected
-    {
+    {  
         let id:string[];
         const found = rooms.find(room => 
           {
@@ -71,6 +71,7 @@ export class GameService {
   {
     if (client.connected) // Proceed if the client hasn't disconnected
     {
+      client.data.manageDisconnection = true;
       // If no one is waiting, add client to queue
       if (players.length == 0)
       {
@@ -78,6 +79,10 @@ export class GameService {
         client.emit("queue");
         client.data.user.side = 'left';
         client.emit("playerInfo", client.data.user);
+      //AbdLah=============================================================
+      /*
+        change client.data.user.id  state to "in queue" in database
+      */  
       }
       else // If someone already in queue join him in a game with client
       {
@@ -91,7 +96,7 @@ export class GameService {
       }
     }
 }
-  
+
 
   joinPlayersToGame(first: Socket, second: Socket, wss: Server, rooms: string[], ongameclients:Socket[])
   {
@@ -111,15 +116,16 @@ export class GameService {
     const gameinfo = new GameInfo();
     first.data.gameinfo = gameinfo;
     second.data.gameinfo = gameinfo;
-  
+
     // Set Key events for both clients
     first.on("keyUp", () => {gameinfo.updatePaddles("left", "up");});
     first.on("keyDown", () => {gameinfo.updatePaddles("left", "down");});
     second.on("keyUp", () => {gameinfo.updatePaddles("right", "up");});
     second.on("keyDown", () => {gameinfo.updatePaddles("right", "down");});
 
-    // Set both clients state in database to playing ===============================
+    // AbdeLah ===============================
     /*
+      Set both clients state in database to "in game"
         first.data.user.id && second.data.user.id
     */
     // Send opponent info
@@ -152,17 +158,16 @@ export class GameService {
     }, 1000/60);
     first.data.gameIntervalId = intervalId;
     second.data.gameIntervalId = intervalId;
-    first.data.gameIntervalIdState = "on";
-    second.data.gameIntervalIdState= "on";
+    first.data.inGame = true;
+    second.data.inGame= true;
   }
 
   async gameFinished(first: Socket, second: Socket, wss: Server, rooms: string[], ongameclients:Socket[])
   {
     clearInterval(first.data.gameIntervalId);
-    first.data.gameIntervalIdState = "off";
-    second.data.gameIntervalIdState = "off";
-    first.disconnect();
-    second.disconnect();
+    first.data.inGame = false;
+    second.data.inGame = false;
+  
     ongameclients.filter((client)=>{client == first});
     ongameclients.filter((client)=>{client == second});
 
@@ -179,10 +184,12 @@ export class GameService {
       second.data.result = "win";
       wss.to(first.data.roomname).emit("Winner", "right");
     }
-    wss.in(first.data.gameIntervalIdState).disconnectSockets(true);
+    // Kick all of sockets out of the room
+    wss.socketsLeave(first.data.roomname);
+
     rooms.filter(room => first.data.roomname == room);
     // AbdeLah ============================================
-          /*    Add game to users history and their state to not playing
+          /*    Add game to users history and their state to "online"
               user 1:{
                 id : first.data.user.id
                 opponent : second.data.user.id
@@ -195,38 +202,46 @@ export class GameService {
                 result : second.data.result
                 score : second.data.gameinfo.rightPaddleScore
               }
-              set state to not playing
+              set state to "online"
           */
   }
 
   async handleDisconnection(wss: Server, client: Socket, queue: Socket[], rooms: string[], ongameclients:Socket[])
   {
     // If client has a player role
-    if (client.handshake.query.role == "player")
+    if (client.handshake.query.role == "player" && client.data.manageDisconnection == true)
     {
+      // AbdLah=====================================
+      /*
+        set client.data.user.id to "offline" in database
+      */
+
       // Filter queue from client
-      queue.filter(clientInQueue => clientInQueue == client);
+      if (client.data.inGame == false)
+        queue.filter(clientInQueue => clientInQueue == client);
       // If client is already in game
-      if (client.data.gameIntervalIdState == "on")
+      else (client.data.inGame == true)
       {
+          client.data.opponent.data.inGame = false;
           clearInterval(client.data.gameIntervalId);
-          client.data.opponent.data.gameIntervalIdState = "off";
+          
           client.data.opponent.emit("OpponentLeft");
-          client.data.opponent.disconnect();
 
           ongameclients.filter((cl)=>{cl == client});
           ongameclients.filter((cl)=>{client == client.data.opponent});
-        
+
           // For spectators
           if (client.data.user.side == "left")
             wss.to(client.data.roomname).emit("Winner", "right");
           else
             wss.to(client.data.roomname).emit("Winner", "left");
-          wss.in(client.data.gameIntervalIdState).disconnectSockets(true);
+          // Kick all of sockets out of the room
+          wss.socketsLeave(client.data.roomname);
+          // Remove this room
           rooms.filter(room => client.data.roomname == room);
 
           // AbdeLah ===========================================
-          /* Add game to clients history in database and set their states to not playing
+          /* Add game to clients history in database
               user 1:{
                 id : client.data.user.id
                 opponent : client.data.opponent.data.user.id
@@ -239,7 +254,7 @@ export class GameService {
                 result : win opponent left
                 score : 5
               }
-              set state to not playing
+              set client.data.opponent.data.user.id to "online" in database
           */
       }
     }
